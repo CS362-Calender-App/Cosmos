@@ -1,0 +1,53 @@
+body {
+	background-image: url("rsrc/bk.png");
+	background-size: cover;
+	font-family: Sora, Verdana, Tahoma, sans-serif;
+	color: #ffffff;
+}
+
+.box-transparent {
+	background: rgba(214, 224, 245, 0.3);
+}
+
+.box-rounded {
+	border-style: solid;
+	border-width: 0px;
+	border-radius: 10px;
+	text-align: center;
+	width:100%;
+}
+
+.main-wrapper {
+	height:72vh;
+}
+
+.calendar {
+	text-align: center;
+	height: 97%;
+	padding-top: 1%;
+}
+
+.notifier {
+	padding-top: 1%;
+	height: 30%;
+}
+
+.top-padder {
+	padding-top: 4%;
+}
+
+.title {
+	padding: 10px;
+	font-size: 72px;
+	padding-left: 2%;
+}
+
+.user-display {
+	padding: 10px;
+	padding-right: 2%;
+	text-align: right;
+}
+
+.menu-display {
+	border-width: 0px;
+}
