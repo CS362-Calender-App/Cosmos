@@ -1,7 +1,8 @@
+@font-face { font-family:a Astro Space; src:  url('AstroSpace-eZ2Bg.otf');}
 body {
 	background-image: url("rsrc/bk.png");
 	background-size: cover;
-	font-family: Sora, Verdana, Tahoma, sans-serif;
+	font-family:a Astro Space, Sora, Verdana, Tahoma, sans-serif;
 	color: #ffffff;
 }
 
