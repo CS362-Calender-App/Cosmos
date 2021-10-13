@@ -1,4 +1,4 @@
-@font-face { font-family:a Astro Space; src:  url('AstroSpace-eZ2Bg.otf');}
+@font-face { font-family:a Astro Space; src:  url('rsrc/AstroSpace-eZ2Bg.ttf');}
 body {
 	background-image: url("rsrc/bk.png");
 	background-size: cover;
@@ -15,12 +15,11 @@ body {
 	border-width: 0px;
 	border-radius: 10px;
 	text-align: center;
-	width:100%;
+	width: 100%;
 }
 
 .main-wrapper {
-	height:72vh;
-
+	height: 72vh;
 }
 
 .calendar {
@@ -52,7 +51,22 @@ body {
 
 .menu-display {
 	border-width: 0px;
-	top:  100px;
+}
+
+.calendar-display {
+}
+
+.day-title {
+	text-align: center;
+}
+
+a {
+	color: #ffeab6;
+}
+
+a:hover {
+	color: #ffffff;
+	text-decoration: none;
 }
 
 nav ul li
