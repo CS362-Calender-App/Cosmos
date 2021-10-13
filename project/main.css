@@ -20,6 +20,7 @@ body {
 
 .main-wrapper {
 	height:72vh;
+
 }
 
 .calendar {
@@ -51,4 +52,32 @@ body {
 
 .menu-display {
 	border-width: 0px;
+	top:  100px;
+}
+
+nav ul li
+{
+	
+	list-style: none;
+	text-decoration: none;
+	position: relative;
+}
+
+nav ul 
+{
+	display:  block;
+	padding: 0px;
+}
+nav a img:hover
+{
+	filter: contrast(40%);
+}
+nav div ul li 
+{
+
+	display: none;
+}
+nav div a img:hover ul li
+{
+	display: block ;
 }
