@@ -1,4 +1,5 @@
 @font-face { font-family:a Astro Space; src:  url('rsrc/AstroSpace-eZ2Bg.ttf');}
+
 body {
 	background-image: url("rsrc/bk.png");
 	background-size: cover;
@@ -60,38 +61,14 @@ body {
 	text-align: center;
 }
 
-a {
+.btn-primary {
+	background: rgba(255, 255, 255, 0.0);
+	--background-color: black;
+	border-width: 0px;
 	color: #ffeab6;
 }
 
-a:hover {
-	color: #ffffff;
-	text-decoration: none;
-}
-
-nav ul li
-{
-	
-	list-style: none;
-	text-decoration: none;
-	position: relative;
-}
-
-nav ul 
-{
-	display:  block;
-	padding: 0px;
-}
-nav a img:hover
-{
-	filter: contrast(40%);
-}
-nav div ul li 
-{
-
-	display: none;
-}
-nav div a img:hover ul li
-{
-	display: block ;
+.btn-primary:hover {
+	background-color: #ffffff;
+	color: #000000;
 }
