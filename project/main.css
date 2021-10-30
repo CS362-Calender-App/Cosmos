@@ -7,6 +7,15 @@ body {
 	color: #ffeab6;
 }
 
+footer {
+	color: #bfbfbf;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 4%;
+}
+
 .box-transparent {
 	background: rgba(214, 224, 245, 0.3);
 }
@@ -63,7 +72,6 @@ body {
 
 .btn-primary {
 	background: rgba(255, 255, 255, 0.0);
-	--background-color: black;
 	border-width: 0px;
 	color: #ffeab6;
 }
