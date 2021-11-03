@@ -2,10 +2,10 @@
 CREATE DATABASE cosmosDB;
 
 CREATE TABLE users (
-    ID int NOT NULL AUTO_INCREMENT,
-    Name varchar(255) NOT NULL,
-    Password varchar(255) NOT NULL,
-    Email varchar(255),
+	ID int NOT NULL AUTO_INCREMENT,
+	Name varchar(255) NOT NULL,
+	Password varchar(255) NOT NULL,
+	Email varchar(255),
 	PRIMARY KEY (ID)
 );
 
