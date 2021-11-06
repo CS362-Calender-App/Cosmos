@@ -1,8 +1,8 @@
-</<?php 
+<?php 
 session_start();
 
 include("connection.php");
-include("function.php");
+include("session.php");
 
 $user_data = check_login($con);
  ?>
@@ -21,7 +21,6 @@ $user_data = check_login($con);
 		<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&display=swap" rel="stylesheet"> 
 	</head>
 	<body>
-		<br>Hello, </<?php echo $user_data['Name']; ?> </body>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-6 title">
@@ -29,18 +28,16 @@ $user_data = check_login($con);
 				</div>
 				<div class="col-sm-6 user-display">
 					<br>
-					<h2>Username</h2>
+					<h2>Hello, <?php echo $user_data['Name']; ?></h2>
 				</div>
 			</div>
 			<div class="row main-wrapper">
 				<div class="col-sm-2 menu-display">
-					<div class="jumbotron box-transparent box-rounded notifier" style="padding: 0px;">
-						<div class="btn-group-vertical" style="width: 100%;">
-							<a class="btn btn-primary" href="index.html">Home</a>
-							<a class="btn btn-primary" href="">Reminder</a>
-							<a class="btn btn-primary" href="">Habits</a>
-							<a class="btn btn-primary" href="">Progress</a>
-						</div>
+					<div class="jumbotron box-transparent box-rounded notifier btn-group-vertical" style="padding: 0px; height: auto;">
+						<a class="btn btn-primary" href="index.php">Home</a>
+						<a class="btn btn-primary" href="">Reminder</a>
+						<a class="btn btn-primary" href="">Habits</a>
+						<a class="btn btn-primary" href="">Progress</a>
 					</div>
 				</div>
 				<div class="col-sm-7 calendar top-padder">

@@ -1,59 +1,43 @@
-</<?php 
+<?php 
 session_start();
 
 include("connection.php");
-include("function.php");
-
-
+include("session.php");
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-
-	//something was posted 
 	$Name = $_POST['username'];
 	$Password = $_POST['password'];
 	
-	
-	if(!empty($Name) && !empty($Password) && !is_numeric($Name))
-	{
-		
-		$query = "select * from users where Name = '$Name' limit 1";
-
+	if(!empty($Name) && !empty($Password) && !is_numeric($Name)) {
+		$query = "SELECT * FROM users Where Name = '$Name' limit 1";
 		$result = mysqli_query($con, $query);
 
-		if($result)
-		{
-			if($result && mysqli_num_rows($result) > 0 )
-				{
+		if($result) {
+			if($result && mysqli_num_rows($result) > 0 ) {
 					$user_data = mysqli_fetch_assoc($result);
 					
-					if($user_data['Password'] == $Password)
-					{
+					if($user_data['Password'] == $Password) {
 
-						 echo "Successful login!";
-						 $_SESSION['ID'] = $user_data['ID'];
+						echo "Successful login!";
+						$_SESSION['ID'] = $user_data['ID'];
 						header("Location: index.php");
 						die;
+					} else {
+						echo "Wrong pass";
 					}
-					else
-					{
-						echo "wrong pass";
-					}
-				}	
-
-		}else if(!$result)
-		{
+				}
+		}
+		else if(!$result) {
 			echo "error";
 		}
 		echo "Wrong username or password!";
 	}
-	else
-	{
+	else {
 		echo "Please enter some valid information!";
 	}
 }
  ?>
-
 
  <!DOCTYPE html>
 <html lang="en-US">
@@ -77,13 +61,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			</div>
 			<div class="row">
 				<div class="col-sm-2 menu-display">
-					<div class="jumbotron box-transparent box-rounded notifier" style="padding: 0px;">
-						<div class="btn-group-vertical" style="width: 100%;">
-							<a class="btn btn-primary" href="index.html">Home</a>
-							<a class="btn btn-primary" href="">Reminder</a>
-							<a class="btn btn-primary" href="">Habits</a>
-							<a class="btn btn-primary" href="">Progress</a>
-						</div>
+					<div class="jumbotron box-transparent box-rounded notifier btn-group-vertical" style="padding: 0px; height: auto;">
+						<a class="btn btn-primary" href="index.php">Home</a>
+						<a class="btn btn-primary" href="">Reminder</a>
+						<a class="btn btn-primary" href="">Habits</a>
+						<a class="btn btn-primary" href="">Progress</a>
 					</div>
 				</div>
 				<div class="col-sm-2">
@@ -91,18 +73,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 				<div class="col-sm-4">
 					<div class="jumbotron box-transparent box-rounded">
 						<h2 style="padding-bottom: 20px;">Login</h2>
-							<form method = "POST">
+						<form method = "POST">
 							<div class="form-group">
-								<label for="Username">Username</label>
-								<input type="Username" class="form-control" name="username">
-							
-								<label for="Password">Password</label>
-								<input type="Password" class="form-control" name="password">
-								<input id="button" type="submit" value="Login">
+								<label for="username">Username</label>
+								<input type="username" class="form-control" name="username">
 							</div>
-
-							
-							<!--<button type="submit" class="btn btn-default">Submit</button> -->
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" name="password">
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox"> Remember me</label>
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
 					</div>
 				</div>

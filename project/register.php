@@ -1,38 +1,26 @@
 <?php 
-
 session_start();
 
 include("connection.php");
-include("function.php");
+include("session.php");
 
-
-
-if($_SERVER['REQUEST_METHOD'] == "POST")
-{
-
-	//something was posted 
+if($_SERVER['REQUEST_METHOD'] == "POST") {
 	$Name = $_POST['username'];
 	$Email = $_POST['email'];
 	$Password = $_POST['password'];
 	
-	if(!empty($Name) && !empty($Password) && !empty($Email) && !is_numeric($Name))
-	{
-		
-		$query = "insert into users ( Name, Password, Email) values ( '$Name', '$Password', '$Email')";
+	if(!empty($Name) && !empty($Password) && !empty($Email) && !is_numeric($Name)) {
+		$query = "INSERT INTO users (Name, Password, Email) VALUES ('$Name', '$Password', '$Email')";
 		mysqli_query($con, $query);
 			
 		header("Location: login.php");
 		die;
 	}
-	else
-	{
+	else {
 		echo "Please enter some valid information!";
 	}
 }
-
-
  ?>
-
 
  <!DOCTYPE html>
 <html lang="en-US">
@@ -56,13 +44,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			</div>
 			<div class="row">
 				<div class="col-sm-2 menu-display">
-					<div class="jumbotron box-transparent box-rounded notifier" style="padding: 0px;">
-						<div class="btn-group-vertical" style="width: 100%;">
-							<a class="btn btn-primary" href="index.html">Home</a>
-							<a class="btn btn-primary" href="">Reminder</a>
-							<a class="btn btn-primary" href="">Habits</a>
-							<a class="btn btn-primary" href="">Progress</a>
-						</div>
+					<div class="jumbotron box-transparent box-rounded notifier btn-group-vertical" style="padding: 0px; height: auto;">
+						<a class="btn btn-primary" href="index.php">Home</a>
+						<a class="btn btn-primary" href="">Reminder</a>
+						<a class="btn btn-primary" href="">Habits</a>
+						<a class="btn btn-primary" href="">Progress</a>
 					</div>
 				</div>
 				<div class="col-sm-2">
@@ -72,19 +58,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 						<h2 style="padding-bottom: 20px;">Register</h2>
 						<form method = "POST">
 							<div class="form-group">
-								<label for="Username">Username</label>
-								<input type="Username" class="form-control" name="username">
-							
-								<label for="Email">Email</label>
-								<input type="Email" class="form-control" name="email">
-							
-								<label for="Password">Password</label>
-								<input type="Password" class="form-control" name="password">
-								<input id="button" type="submit" value="Register">
+								<label for="username">Username</label>
+								<input type="username" class="form-control" name="username">
 							</div>
-
-							
-							<!--<button type="submit" class="btn btn-default">Submit</button> -->
+							<div class="form-group">
+								<label for="password2">Email</label>
+								<input type="email" class="form-control" name="email">
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" name="password">
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
 					</div>
 				</div>
@@ -97,9 +82,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 				<div class="col-sm-4">
 					<div class="jumbotron box-transparent box-rounded">
 						<p>Already have an account?</p>
-						<!--<label>Click here</label> -->
+						<label>Click to sign in</label>
 						<br>
-						<a type="button" class="btn btn-default" href="login.php">Click here</a>
+						<a type="button" class="btn btn-default" href="login.php">Login</a>
 					</div>
 				</div>
 				<div class="col-sm-4">
