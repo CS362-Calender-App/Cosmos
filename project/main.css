@@ -5,6 +5,7 @@ body {
 	background-size: cover;
 	font-family:a Astro Space, Sora, Verdana, Tahoma, sans-serif;
 	color: #ffeab6;
+	text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 h3{
 	font-size: 6;
@@ -32,11 +33,10 @@ footer {
 }
 
 .main-wrapper {
-	height: 72vh;
+	height: 50vh;
 }
 
-.calendar1
- {
+.calendar-wrapper {
 	text-align: center;
 	height: auto;
 	padding-top: 1%;

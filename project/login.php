@@ -27,13 +27,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 						echo "Wrong pass";
 					}
 				}
-		}
-		else if(!$result) {
+		} else if(!$result) {
 			echo "error";
 		}
 		echo "Wrong username or password!";
-	}
-	else {
+	} else {
 		echo "Please enter some valid information!";
 	}
 }
