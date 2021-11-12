@@ -6,6 +6,9 @@ body {
 	font-family:a Astro Space, Sora, Verdana, Tahoma, sans-serif;
 	color: #ffeab6;
 }
+h3{
+	font-size: 6;
+}
 
 footer {
 	color: #bfbfbf;
@@ -32,10 +35,12 @@ footer {
 	height: 72vh;
 }
 
-.calendar {
+.calendar1
+ {
 	text-align: center;
-	height: 97%;
+	height: auto;
 	padding-top: 1%;
+	background: rgba(214, 224, 245, 0.3);
 }
 
 .notifier {
@@ -80,3 +85,5 @@ footer {
 	background-color: #ffffff;
 	color: #000000;
 }
+
+
