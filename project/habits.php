@@ -10,8 +10,8 @@ $result = "SELECT ID, UserID, Description, Date, Time, Points FROM habits";
 $result = mysqli_query($con, $result);
 
 if (mysqli_num_rows($result) > 0) {
-	while ($row = mysqli_fetch_assoc($result)) {
-			echo $row[1]." ".$row[2]." ".$row[3]." ".$row[4]." ".$row[5]." ".$row[6];
+	while ($row = mysqli_fetch_array($result)) {
+			echo $row[0]." ".$row[1]." ".$row[2]." ".$row[3]." ".$row[4]." ".$row[5];
 			echo "<br>";
 		}
 }
@@ -52,4 +52,32 @@ if (mysqli_num_rows($result) > 0) {
 						<a class="btn btn-primary" href="">Habits</a>
 						<a class="btn btn-primary" href="">Progress</a>
 					</div>
-				
+				</div>
+				<div class="col-sm-9 top-padder">
+					<div class="box-rounded jumbotron box-transparent box-rounded">
+						<!--PUT CODE HERE-->
+						<!--PUT CODE HERE-->
+						<!--PUT CODE HERE-->
+						<!--PUT CODE HERE-->
+						<!--PUT CODE HERE-->
+						<!--PUT CODE HERE-->
+						<!--PUT CODE HERE-->
+					</div>
+				</div>
+				<div class="col-sm-1 top-padder">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+				</div>
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-9">
+					<footer>@2021 - CPSC 362 - Group 2</footer>
+				</div>
+				<div class="col-sm-1">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
