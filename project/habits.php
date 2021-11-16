@@ -6,9 +6,26 @@ include("session.php");
 
 $user_data = check_login($con);
 
-$result = "SELECT ID, UserID, Description, Date, Time, Points FROM habits";
-$result = mysqli_query($con, $result);
+// $result = "SELECT ID, UserID, Description, Date, Time, Points FROM habits";
+// $result = "SELECT ID, UserID, Description, Time, Points, Date FROM habits WHERE Date > now() ORDER BY date"
+$missed = "SELECT * FROM habits WHERE Date < CURDATE()";					// Missed/Unlogged Habits
+$upcoming = "SELECT * FROM habits WHERE Date > CURDATE() ORDER BY Date";		// Upcoming Habits
+$upcoming = mysqli_query($con, $upcoming);
+$missed = mysqli_query($con, $missed);
  ?>
+
+<!-- 
+SELECT now();  -- date and time
+SELECT curdate(); --date
+SELECT curtime(); --time in 24-hour format
+
+$row[0] = ID
+$row[1] = USERID
+$row[2] = Description
+$row[3] = Date
+$row[4] = Time
+$row[5] = Points 
+-->
 
  <!DOCTYPE html>
 <html lang="en-US">
@@ -49,12 +66,28 @@ $result = mysqli_query($con, $result);
 				<div class="col-sm-9 top-padder">
 					<div class="box-rounded jumbotron box-transparent box-rounded">
 					<?php 
-					if (mysqli_num_rows($result) > 0) {
-						while ($row = mysqli_fetch_array($result)) {
-							echo $row[0]." ".$row[1]." ".$row[2]." ".$row[3]." ".$row[4]." ".$row[5];
+					if (mysqli_num_rows($upcoming) > 0) {
+						echo "Upcoming Habits: ";
+						echo "<br>";
+						while ($row = mysqli_fetch_array($upcoming)) {
+							echo $row[2]." on ".$row[3];
 							echo "<br>";
 						}
+					} elseif (mysqli_num_rows($upcoming) == 0) {
+						echo "No Upcoming Habits to track";
+					// TEST: Functionality may not be needed 
+					//Not getting to here	
+					} elseif (mysqli_num_rows($missed) > 0) {
+						echo "Past Habits:  ";
+						while ($row = mysqli_fetch_array($missed)) {
+							echo $row[2]." on ".$row[3];
+							echo "<br>";
+						}
+					} elseif (mysqli_num_rows($missed) == 0) {
+						echo "No past habits to display";
+						echo "<br>";
 					}
+			
 					?>
 					</div>
 				</div>
