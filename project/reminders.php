@@ -8,9 +8,9 @@ $user_data = check_login($con);
 
 $result = "SELECT * FROM reminders WHERE Date >= CURDATE() ORDER BY Date";
 $result = mysqli_query($con, $result);
- ?>
+?>
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<title>Cosmos - Reminders</title>
