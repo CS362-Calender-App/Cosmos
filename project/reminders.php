@@ -1,13 +1,38 @@
 <?php 
-session_start();
+	session_start();
 
-include("connection.php");
-include("session.php");
+	include("connection.php");
+	include("session.php");
 
-$user_data = check_login($con);
+	$user_data = check_login($con);
 
-$result = "SELECT * FROM reminders WHERE Date >= CURDATE() ORDER BY Date";
-$result = mysqli_query($con, $result);
+	$ID = $_SESSION['ID'];
+
+	if($_SERVER['REQUEST_METHOD'] == "POST") {
+		$reminderDescription = $_POST['reminder_description'];
+		$Date = $_POST['date'];
+		$Time = $_POST['time'];
+		$Location = $_POST['loaction'];
+		$Recurrence = $_POST['recurrence'];
+	
+		if(!empty($reminderDescription) && !empty($Date) && !empty($Time)) {
+			$addReminder = "INSERT INTO reminders (UserID, Description, Date, Time, Location, Reoccuring) 
+							VALUES ('$ID', '$reminderDescription', '$Date', '$Time', '$Location', '$Recurrence')";
+			mysqli_query($con, $addReminder);
+			
+			header("Location: reminders.php");
+			die;
+		} 
+		else {
+			echo "Please enter some valid information!";
+		}
+	}
+
+	$result = "SELECT UserID, Description, Date, Time, Location, Reoccuring
+			   FROM reminders
+			   WHERE Date >= CURDATE() AND UserID = '$ID'
+			   ORDER BY Date";
+	$result = mysqli_query($con, $result);
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +43,7 @@ $result = mysqli_query($con, $result);
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="main.css" type="text/css">
+		<link rel="stylesheet" href="reminder.css" type="text/css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -48,93 +74,52 @@ $result = mysqli_query($con, $result);
 				</div>
 				<div class="col-sm-7 current-reminders top-padder">
 					<div class="jumbotron box-transparent box-rounded">
-						<table style = "table-layout: fixed;" align="center" width = "100%">
-							<?php 
-								if (mysqli_num_rows($result) > 0) {
-									echo "<h2>Upcoming Reminders</h2>";
+						<h2>Reminders</h2>
+						<div class = "scroll">
+							<table>
+								<?php 
+									date_default_timezone_set('US/Pacific');
+									$currDate = date("m/d/Y");
 
-									echo "<tr'>";
-										echo "<th>Reminder</th>";
-										echo "<th>Date</th>";
-										echo "<th>Time</th>";
-										echo "<th>Location</th>";
-										echo "<th>Reoccurance</th>";
-									echo "</tr>";
+									if (mysqli_num_rows($result) > 0) {
+										echo "<tr>";
+											echo "<th>Reminder</th>";
+											echo "<th>Date</th>";
+											echo "<th>Time</th>";
+											echo "<th>Location</th>";
+											echo "<th>Recurrence</th>";
+										echo "</tr>";
 
-									while ($row = mysqli_fetch_array($result)) {
-										$remID = $row[0];
-										$remUserID = $row[1];
-										$remDescription = $row[2];
-										$remDate = date("m/d/Y", strtotime($row[3]));
-										$remTime = date("h:i A", strtotime($row[4]));
-										$remLocation = $row[5];
-										$remReoccuring = $row[6];
-										
-										if ($user_data['ID'] == $remUserID) {
-											/*echo "<h5 style = 'text-align: left; font-family: Trebuchet MS; font-size: 15px;'>" . $remDescription . " "
-													. $remDate . " " . $remTime . " " . $remLocation . " " . $remReoccuring . "</h5>";
-											echo "<br />";*/
+										while ($row = mysqli_fetch_array($result)) {
+											$remUserID = $row[0];
+											$remDescription = $row[1];
+											$remDate = date("m/d/Y", strtotime($row[2]));
+											$remTime = date("h:i a", strtotime($row[3]));
+											$remLocation = $row[4];
+											$remRecurring = $row[5];
 
-											echo "<tr style = 'text-align: left; font-family: Trebuchet MS; font-size: 15px;'>";
+											echo "<tr>";
 												echo "<td>" . $remDescription . "</td>";
 												echo "<td>" . $remDate . "</td>";
 												echo "<td>" . $remTime . "</td>";
 												echo "<td>" . $remLocation . "</td>";
-												echo "<td>" . $remReoccuring . "</td>";
+												echo "<td>" . $remRecurring . "</td>";
 											echo "</tr>";
 										}
 									}
-								}
-							?>
-						</table>
+								?>
+							</table>
+						</div>
 					</div>
 				</div>
 				<div class="col-sm-3 create-reminder top-padder">
 					<div class="jumbotron box-transparent box-rounded">
 						<h2>Create a Reminder</h2>
 						<br />
-						<form method = "POST" style = "text-align: left;">
+						<form method = "POST">
 							<div class="form-group">
-								<label for="description">Reminder</label>
-								<input type="description" style = "font-family: Trebuchet MS;" class="form-control" name="description">
-							</div>
-							<br />
-							<div class="form-group">
-								<label for="date">Date</label>
-								<input type="date" style = "font-family: Trebuchet MS;" class="form-control" name="date">
-							</div>
-							<br />
-							<div class="form-group">
-								<label for="time">Time</label>
-								<input type="time" style = "font-family: Trebuchet MS;" class="form-control" name="time">
-							</div>
-							<br />
-							<div class="form-group">
-								<label for="loaction">Location</label>
-								<input type="loaction" style = "font-family: Trebuchet MS;" class="form-control" name="loaction">
-							</div>
-							<br />
-							<div class="form-group">
-								<label for="reoccuring">Reoccuring</label>
-								<input type="reoccuring" style = "font-family: Trebuchet MS;" class="form-control" name="reoccuring">
-							</div>
-						</form>
-						<br />
-						<button type="save" class="btn btn-default">Save</button>
-					</div>
-				</div>
-			</div>
-			<!--<div class="row">
-				<div class="col-sm-12"></div>
-				<div class="col-sm-2"></div>
-				<div class="col-sm-8">
-					<div class="jumbotron box-transparent box-rounded">
-						<h2>Create a Reminder</h2>
-						<br />
-						<form method = "POST" style = "text-align: left;">
-							<div class="form-group">
-								<label for="description">Reminder</label>
-								<input type="description" class="form-control" name="description">
+								<label for="reminder_description">Reminder Description</label>
+								<input type="reminder_description" class="form-control" name="reminder_description">
 							</div>
 							<br />
 							<div class="form-group">
@@ -153,16 +138,15 @@ $result = mysqli_query($con, $result);
 							</div>
 							<br />
 							<div class="form-group">
-								<label for="reoccuring">Reoccuring</label>
-								<input type="reoccuring" class="form-control" name="reoccuring">
+								<label for="recurrence">Recurrence</label>
+								<input type="recurrence" class="form-control" name="recurrence">
 							</div>
+							<button type="save" class="btn btn-default">Save</button>
 						</form>
 						<br />
-						<button type="save" class="btn btn-default">Save</button>
 					</div>
 				</div>
-				<div class="col-sm-2"></div>
-			/div>-->
+			</div>
 			<div class="row">
 				<div class="col-sm-12"></div>
 				<div class="col-sm-2"></div>
