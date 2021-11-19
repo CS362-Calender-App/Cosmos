@@ -1,0 +1,60 @@
+﻿table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr {
+    text-align: left;
+    font-family: Trebuchet MS;
+    font-size: 15px;
+}
+
+tr:hover {
+    color: white;
+    font-weight: bold;
+}
+
+th, td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+th:first-child, td:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+th:last-child, td:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+input {
+    font-family: Trebuchet MS;
+}
+
+.scroll {
+    height: 557px;
+    overflow: auto;
+}
+
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: dimgrey;
+}
