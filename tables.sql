@@ -23,9 +23,11 @@ CREATE TABLE reminders (
 CREATE TABLE habits (
 	ID int NOT NULL AUTO_INCREMENT,
 	UserID int NOT NULL,
+	Name varchar(255),
 	Description varchar(255),
 	Date date,
 	Time time,
 	Points int,
+	Percentage varchar(255),
 	PRIMARY KEY (ID)
 );
