@@ -6,25 +6,21 @@ include("session.php");
 
 $user_data = check_login($con);
 $ID = $_SESSION['ID'];
-$query = "SELECT * FROM habits WHERE ID = '$ID' limit 1";        
+$query = "SELECT * FROM habits WHERE ID = '$ID'";        
 $result = mysqli_query($con, $query);                  
   if($result && mysqli_num_rows($result) > 0 ) {            
 	$habits_data = mysqli_fetch_assoc($result);        
-	}
+}
 
 
-$result = "SELECT ID, UserID, Name, Description, Date, Time, Points, Percentage FROM habits";
-// $result = "SELECT ID, UserID, Description, Time, Points, Date FROM habits WHERE Date > now() ORDER BY date"
-$missed = "SELECT * FROM habits WHERE Date < CURDATE()";					// Missed/Unlogged Habits
-$upcoming = "SELECT * FROM habits WHERE Date > CURDATE() ORDER BY Date";		// Upcoming Habits 
+$result = "SELECT ID, UserID, Name, Description, Date, Time, Points, Percentage FROM habits"; // ALL Data
+$missed = "SELECT * FROM habits WHERE Date < CURDATE()";	// Missed/Unlogged Habits
+$upcoming = "SELECT * FROM habits WHERE Date > CURDATE() ORDER BY Date";	// Upcoming Habits 
 $upcoming = mysqli_query($con, $upcoming);
-$missed = mysqli_query($con, $missed);;
+$missed = mysqli_query($con, $missed);
  ?>
-<!-- 
-SELECT now();  -- date and time
-SELECT curdate(); --date
-SELECT curtime(); --time in 24-hour format
-
+<!--------------------------
+ACCESS DATA:
 $row[0] = ID
 $row[1] = USERID
 $row[2] = Name (Of habit)
@@ -33,7 +29,7 @@ $row[4] = Date
 $row[5] = Time
 $row[6] = Points 
 $row[7] = Percentage
--->
+--------------------------->
 
  <!DOCTYPE html>
 <html lang="en-US">
@@ -81,7 +77,7 @@ $row[7] = Percentage
 						<div>
 							<div class="alert alert-success"><b>'.$habits_data['Name'].'</b></div>
 							<div class="progress">
-								<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">100%</div>
+								<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70"  aria-valuemin="0" aria-valuemax="100" style="width:'.$habits_data['Percentage'].'">'.$habits_data['Percentage'].';</div>
 							</div>
 						</div> ';
 						?>
@@ -101,25 +97,26 @@ $row[7] = Percentage
 				</div>
 				<div class="col-sm-4 top-padder">
 					<div class="box-rounded box-transparent box-rounded habit-heading">
-						<h2>Description</h2>
+						<h2>Upcoming Habits</h2>
 					</div>
 					<div class="box-rounded jumbotron box-transparent box-rounded">
 					<?php 
 					if (mysqli_num_rows($upcoming) > 0) {
-						echo "Upcoming Habits: ";
-						echo "<br>";
 						while ($row = mysqli_fetch_array($upcoming)) {
-							echo $row[2]." on ".$row[3];
+							echo $row[2]." on ".$row[4];
 							echo "<br>";
 						}
 					} elseif (mysqli_num_rows($upcoming) == 0) {
 						echo "No Upcoming Habits to track";
+					}
 					// TEST: Functionality may not be needed 
-					//Not getting to here	
-					} elseif (mysqli_num_rows($missed) > 0) {
+					if (mysqli_num_rows($missed) > 0) {
+						echo "<br>";
+						echo "<br>";
 						echo "Past Habits:  ";
+						echo "<br>";
 						while ($row = mysqli_fetch_array($missed)) {
-							echo $row[2]." on ".$row[3];
+							echo $row[2]." on ".$row[4];
 							echo "<br>";
 						}
 					} elseif (mysqli_num_rows($missed) == 0) {
@@ -129,8 +126,8 @@ $row[7] = Percentage
 			
 					?>
 					</div>
-					
 				</div>
+
 				<div class="col-sm-2 top-padder">
 					<div class="box-rounded box-transparent box-rounded habit-heading">
 						<h2>Actions</h2>
