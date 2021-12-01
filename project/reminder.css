@@ -1,21 +1,33 @@
-﻿table {
+.update_buttons {
+    background-color: #ffeab6;
+    color: black;
+    font-weight: bold;
+}
+
+h2 {
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+input, textarea {
+    font-family: Trebuchet MS;
+}
+
+form div {
+    text-align: left;
+}
+
+table {
     table-layout: fixed;
     border-collapse: collapse;
     width: 100%;
 }
 
-tr {
-    text-align: left;
-    font-family: Trebuchet MS;
-    font-size: 15px;
+.scroll {
+    height: 656px;
+    overflow: auto;
 }
 
-tr:hover {
-    color: white;
-    font-weight: bold;
-}
-
-th, td {
+td {
     padding: 10px;
     vertical-align: top;
 }
@@ -28,26 +40,32 @@ th:last-child, td:last-child {
     border-radius: 0 10px 10px 0;
 }
 
-input {
+thead tr, thead th {
+    vertical-align: middle;
+    text-align: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+tr {
+    text-align: center;
     font-family: Trebuchet MS;
+    font-size: 15px;
 }
 
-.scroll {
-    height: 557px;
-    overflow: auto;
+tbody tr:hover {
+    color: white;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    font-weight: bold;
 }
-
 
 ::-webkit-scrollbar {
     width: 7px;
 }
 
-
 ::-webkit-scrollbar-track {
     background: white;
     border-radius: 10px;
 }
-
 
 ::-webkit-scrollbar-thumb {
     background: grey;
