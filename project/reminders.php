@@ -52,15 +52,27 @@
 		$Location_Edit = $_POST['edit_loaction'];
 		$Recurrence_Edit = $_POST['edit_recurrence'];
 	
-		if(!empty($reminderID) && !empty($reminderDescription_Edit) && !empty($Date_Edit) && !empty($Time_Edit)) {
-			$editReminder = "UPDATE reminders 
-							 SET Description = '$reminderDescription_Edit', Date = '$Date_Edit', Time = '$Time_Edit', Location = '$Location_Edit', Reoccuring = '$Recurrence_Edit'
-							 WHERE ID = '$reminderID'";
-			mysqli_query($con, $editReminder);
-			
-			$editReminder = "INSERT INTO reminders (UserID, Description, Date, Time, Location, Reoccuring) 
-							VALUES ('$ID', '$reminderDescription', '$Date', '$Time', '$Location', '$Recurrence')";
-			mysqli_query($con, $editReminder);
+		if(!empty($reminderID)) {
+			if (!empty($reminderDescription_Edit)) {
+				$editDescription = "UPDATE reminders SET Description = '$reminderDescription_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editDescription);
+			}
+			if (!empty($Date_Edit)) {
+				$editDescription = "UPDATE reminders SET Date = '$Date_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editDescription);
+			}
+			if (!empty($Time_Edit)) {
+				$editDescription = "UPDATE reminders SET Time = '$Time_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editDescription);
+			}
+			if (!empty($Location_Edit)) {
+				$editDescription = "UPDATE reminders SET Location = '$Location_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editDescription);
+			}
+			if (!empty($Recurrence_Edit)) {
+				$editDescription = "UPDATE reminders SET Reoccuring = '$Recurrence_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editDescription);
+			}
 			
 			header("Location: reminders.php");
 			die;
