@@ -6,14 +6,11 @@ include("session.php");
 
 $user_data = check_login($con);
 $ID = $_SESSION['ID'];
-$query = "SELECT * FROM habits WHERE ID = '$ID'";        
+$query = "SELECT ID, UserID, Name, Description, Date, Time, Points, Percentage FROM habits WHERE USERID = ".$ID; // ALL Data      
 $result = mysqli_query($con, $query);                  
-  if($result && mysqli_num_rows($result) > 0 ) {            
-	$habits_data = mysqli_fetch_assoc($result);        
-}
 
 
-$result = "SELECT ID, UserID, Name, Description, Date, Time, Points, Percentage FROM habits"; // ALL Data
+
 $missed = "SELECT * FROM habits WHERE Date < CURDATE()";	// Missed/Unlogged Habits
 $upcoming = "SELECT * FROM habits WHERE Date > CURDATE() ORDER BY Date";	// Upcoming Habits 
 $upcoming = mysqli_query($con, $upcoming);
@@ -73,26 +70,29 @@ $row[7] = Percentage
 						<h2>Habits</h2>
 					</div>
 					<div style="padding: 0px; height: auto;">
-						<?php echo ' 
-						<div>
-							<div class="alert alert-success"><b>'.$habits_data['Name'].'</b></div>
-							<div class="progress">
-								<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="70"  aria-valuemin="0" aria-valuemax="100" style="width:'.$habits_data['Percentage'].'">'.$habits_data['Percentage'].';</div>
-							</div>
-						</div> ';
+						<?php
+						if (mysqli_num_rows($result) > 0) {
+							while ($row = $result->fetch_assoc()) {
+								$progressbar = "progress-bar-success";
+								$alertbar = "alert-success";
+								if ($row['Percentage'] <= 30) {
+									$progressbar = "progress-bar-danger";
+									$alertbar = "alert-danger";
+								} elseif ($row['Percentage'] <= 60) {
+									$progressbar = "progress-bar-warning";
+									$alertbar = "alert-warning";
+								}
+								echo ' 
+								<div>
+									<div class="alert '.$alertbar.'"><b>'.$row['Name'].'</b></div>
+									<div class="progress">
+										<div class="progress-bar '.$progressbar.' progress-bar-striped active" role="progressbar" aria-valuenow="70"  aria-valuemin="0" aria-valuemax="100" style="width:'.$row['Percentage'].'%">'.$row['Percentage'].'%</div>
+									</div>
+								</div> ';
+							}
+						}
+						
 						?>
-						<div>
-							<div class="alert alert-danger"><b>Swimming Goal - 5 Laps</b></div>
-							<div class="progress">
-								<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
-							</div> 
-						</div>
-						<div>
-							<div class="alert alert-warning"><b>Exercise - 20 Pushups</b></div>
-							<div class="progress">
-								<div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">70%</div>
-							</div> 
-						</div>
 					</div>
 				</div>
 				<div class="col-sm-4 top-padder">
