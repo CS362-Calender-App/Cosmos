@@ -64,8 +64,40 @@ $row[7] = Percentage
 						<a class="btn btn-primary" href="">Habits</a>
 						<a class="btn btn-primary" href="">Progress</a>
 					</div>
+					<div>
+					<div class="box-rounded box-transparent box-rounded habit-heading">
+						<h2>Upcoming Habits</h2>
+					</div>
+					<div class="box-rounded jumbotron box-transparent box-rounded">
+					<?php 
+					if (mysqli_num_rows($upcoming) > 0) {
+						while ($row = mysqli_fetch_array($upcoming)) {
+							echo $row[2]." on ".$row[4];
+							echo "<br>";
+						}
+					} elseif (mysqli_num_rows($upcoming) == 0) {
+						echo "No Upcoming Habits to track";
+					}
+					// TEST: Functionality may not be needed 
+					if (mysqli_num_rows($missed) > 0) {
+						echo "<br>";
+						echo "<br>";
+						echo "Past Habits:  ";
+						echo "<br>";
+						while ($row = mysqli_fetch_array($missed)) {
+							echo $row[2]." on ".$row[4];
+							echo "<br>";
+						}
+					} elseif (mysqli_num_rows($missed) == 0) {
+						echo "No past habits to display";
+						echo "<br>";
+					}
+					?>
+					</div>
+					</div>
+
 				</div>
-				<div class="col-sm-4 top-padder">
+				<div class="col-sm-7 top-padder">
 					<div class="box-rounded box-transparent box-rounded habit-heading">
 						<h2>Habits</h2>
 					</div>
@@ -95,40 +127,7 @@ $row[7] = Percentage
 						?>
 					</div>
 				</div>
-				<div class="col-sm-4 top-padder">
-					<div class="box-rounded box-transparent box-rounded habit-heading">
-						<h2>Upcoming Habits</h2>
-					</div>
-					<div class="box-rounded jumbotron box-transparent box-rounded">
-					<?php 
-					if (mysqli_num_rows($upcoming) > 0) {
-						while ($row = mysqli_fetch_array($upcoming)) {
-							echo $row[2]." on ".$row[4];
-							echo "<br>";
-						}
-					} elseif (mysqli_num_rows($upcoming) == 0) {
-						echo "No Upcoming Habits to track";
-					}
-					// TEST: Functionality may not be needed 
-					if (mysqli_num_rows($missed) > 0) {
-						echo "<br>";
-						echo "<br>";
-						echo "Past Habits:  ";
-						echo "<br>";
-						while ($row = mysqli_fetch_array($missed)) {
-							echo $row[2]." on ".$row[4];
-							echo "<br>";
-						}
-					} elseif (mysqli_num_rows($missed) == 0) {
-						echo "No past habits to display";
-						echo "<br>";
-					}
-			
-					?>
-					</div>
-				</div>
-
-				<div class="col-sm-2 top-padder">
+				<div class="col-sm-3 top-padder">
 					<div class="box-rounded box-transparent box-rounded habit-heading">
 						<h2>Actions</h2>
 					</div>
