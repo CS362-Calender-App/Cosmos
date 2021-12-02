@@ -54,24 +54,24 @@
 	
 		if(!empty($reminderID)) {
 			if (!empty($reminderDescription_Edit)) {
-				$editDescription = "UPDATE reminders SET Description = '$reminderDescription_Edit' WHERE ID = '$reminderID'";
-				mysqli_query($con, $editDescription);
+				$editRem = "UPDATE reminders SET Description = '$reminderDescription_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editRem);
 			}
 			if (!empty($Date_Edit)) {
-				$editDescription = "UPDATE reminders SET Date = '$Date_Edit' WHERE ID = '$reminderID'";
-				mysqli_query($con, $editDescription);
+				$editRem = "UPDATE reminders SET Date = '$Date_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editRem);
 			}
 			if (!empty($Time_Edit)) {
-				$editDescription = "UPDATE reminders SET Time = '$Time_Edit' WHERE ID = '$reminderID'";
-				mysqli_query($con, $editDescription);
+				$editRem = "UPDATE reminders SET Time = '$Time_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editRem);
 			}
 			if (!empty($Location_Edit)) {
-				$editDescription = "UPDATE reminders SET Location = '$Location_Edit' WHERE ID = '$reminderID'";
-				mysqli_query($con, $editDescription);
+				$editRem = "UPDATE reminders SET Location = '$Location_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editRem);
 			}
 			if (!empty($Recurrence_Edit)) {
-				$editDescription = "UPDATE reminders SET Reoccuring = '$Recurrence_Edit' WHERE ID = '$reminderID'";
-				mysqli_query($con, $editDescription);
+				$editRem = "UPDATE reminders SET Reoccuring = '$Recurrence_Edit' WHERE ID = '$reminderID'";
+				mysqli_query($con, $editRem);
 			}
 			
 			header("Location: reminders.php");
@@ -97,7 +97,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="main.css" type="text/css">
-		<link rel="stylesheet" href="reminders.css?v=1.4" type="text/css">
+		<link rel="stylesheet" href="reminders.css?v=1.5" type="text/css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -129,7 +129,7 @@
 				<div class="col-sm-7 current-reminders top-padder">
 					<div class="jumbotron box-transparent box-rounded">
 						<h2>Upcoming Reminders</h2>
-						<div class = "scroll">
+						<div class = "upcomingRemBox">
 							<form method = "POST">
 								<table>
 									<?php 
