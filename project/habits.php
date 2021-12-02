@@ -6,6 +6,87 @@ include("session.php");
 
 $user_data = check_login($con);
 $ID = $_SESSION['ID'];
+if (isset($_POST['save_rem_button'])) {
+		$Name = $_POST['name']; // Added
+		$habitDescription = $_POST['habit_description'];
+		$Date = $_POST['date'];
+		$Time = $_POST['time'];
+		$Points = $_POST['points']; // Added
+		$Percentage = $_POST['percentage']; // Added
+		$Name = $_POST['name']; // Added
+
+	
+		if(!empty($habitDescription) && !empty($Date) && !empty($Time)) {
+			$addhabit = "INSERT INTO habits (UserID, Name, Description, Date, Time, Points, Percentage) 
+							VALUES ('$ID', '$Name', '$habitDescription', '$Date', '$Time', '$Points', '$Percentage')";
+			mysqli_query($con, $addhabit);
+			
+			header("Location: habits.php");
+			die;
+		} 
+		else {
+			echo "Please enter some valid information!";
+		}
+	}
+
+	if (isset($_POST['delete_rem_button'])) {
+		$delete_arr = $_POST['rem_delete_id'];
+		$id_to_delete = implode(',', $delete_arr);
+		
+		$deletehabit = "DELETE FROM habits WHERE ID IN($id_to_delete)";
+		$deletehabit = mysqli_query($con, $deletehabit);
+
+		if ($deletehabit) {
+			header("Location: habits.php");
+		}
+		else {
+			echo "Failed to Delete habit!";
+			header("Location: habits.php");
+		}
+	}
+
+	if (isset($_POST['update_rem_button'])) {
+		$habitID = $_POST['habit_id'];
+		$Name_Edit = $_POST['edit_name'];
+		$habitDescription_Edit = $_POST['edit_habit_description'];
+		$Date_Edit = $_POST['edit_date'];
+		$Time_Edit = $_POST['edit_time'];
+		$Points_Edit = $_POST['edit_points'];
+		$Percentage_Edit = $_POST['edit_percentage'];
+	
+		if(!empty($habitID)) {
+			if (!empty($Name_Edit)) { // Added
+				$editDescription = "UPDATE habits SET Name = '$Name_Edit' WHERE ID = '$habitID'";
+				mysqli_query($con, $editDescription);
+			}
+			if (!empty($habitDescription_Edit)) {
+				$editDescription = "UPDATE habits SET Description = '$habitDescription_Edit' WHERE ID = '$habitID'";
+				mysqli_query($con, $editDescription);
+			}
+			if (!empty($Date_Edit)) {
+				$editDescription = "UPDATE habits SET Date = '$Date_Edit' WHERE ID = '$habitID'";
+				mysqli_query($con, $editDescription);
+			}
+			if (!empty($Time_Edit)) {
+				$editDescription = "UPDATE habits SET Time = '$Time_Edit' WHERE ID = '$habitID'";
+				mysqli_query($con, $editDescription);
+			}
+			if (!empty($Points_Edit)) {
+				$editDescription = "UPDATE habits SET Points = '$Points_Edit' WHERE ID = '$habitID'";
+				mysqli_query($con, $editDescription);
+			}
+			if (!empty($Percentage_Rdit)) {
+				$editDescription = "UPDATE habits SET Percentage = '$Percentage_edit' WHERE ID = '$habitID'";
+				mysqli_query($con, $editDescription);
+			}
+			
+			header("Points: habits.php");
+			die;
+		} 
+		else {
+			echo "Please enter some valid information!";
+		}
+	}
 $query = "SELECT ID, UserID, Name, Description, Date, Time, Points, Percentage FROM habits WHERE USERID = ".$ID; // ALL Data      
 $result = mysqli_query($con, $query);                  
 
@@ -78,7 +159,7 @@ $row[7] = Percentage
 					} elseif (mysqli_num_rows($upcoming) == 0) {
 						echo "No Upcoming Habits to track";
 					}
-					// TEST: Functionality may not be needed 
+					
 					if (mysqli_num_rows($missed) > 0) {
 						echo "<br>";
 						echo "<br>";
@@ -128,29 +209,94 @@ $row[7] = Percentage
 					</div>
 				</div>
 				<div class="col-sm-3 top-padder">
-					<div class="box-rounded box-transparent box-rounded habit-heading">
-						<h2>Actions</h2>
-					</div>
-					<div class="box-rounded box-transparent box-rounded action-box">
-						<h4>Add Habit</h4>
-						<a type="button" class="btn btn-default" href="">Add</a>
-					</div>
-					<div class="box-rounded box-transparent box-rounded action-box">
-						<h4>Edit Habit</h4>
-						<a type="button" class="btn btn-default" href="">Edit</a>
-					</div>
-					<div class="box-rounded box-transparent box-rounded action-box">
-						<h4>Delete Habit</h4>
-						<a type="button" class="btn btn-default" href="">Delete</a>
+					<div class="jumbotron box-transparent box-rounded">
+						<h2>Add a Habit</h2>
+						<br />
+						<form method = "POST">
+									<div class="form-group">
+										<label for="name">Name</label>
+										<input type="name" class="form-control" name="name">
+									</div>
+									<br />
+									<div class="form-group">
+										<label for="habit_description">Description</label>
+										<input type="habit_description" class="form-control" name="habit_description">
+									</div>
+									<br />
+									<div class="form-group">
+										<label for="date">Date</label>
+										<input type="date" class="form-control" name="date">
+									</div>
+									<br />
+									<div class="form-group">
+										<label for="time">Time</label>
+										<input type="time" class="form-control" name="time">
+									</div>
+									<br />
+									<div class="form-group">
+										<label for="points">Points</label>
+										<input type="points" class="form-control" name="points">
+									<br />
+									<div class="form-group">
+										<label for="percentage">Percentage</label>
+										<input type="percentage" class="form-control" name="percentage">
+									</div>
+									<button type="save" class="btn btn-default">Save</button>
+								</form>
 					</div>
 				</div>
+		
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
 				</div>
 				<div class="col-sm-2">
 				</div>
-				<div class="col-sm-9">
+				<div class="col-sm-10">
+					<div class="jumbotron box-transparent box-rounded">
+						<h2>Edit a Habit</h2>
+						<br />
+						<form method = "POST">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group">
+											<label for="habit_id">Habit ID</label>
+											<input type="habit_id" class="form-control" name="habit_id"></input>
+										</div>
+										<div class="form-group">
+											<label for="edit_habit_description">Description</label>
+											<textarea rows = "5" type="edit_habit_description" class="form-control" name="edit_habit_description"></textarea>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<label for="edit_habit_name">Name</label>
+											<textarea rows = "1" type="edit_habit_name" class="form-control" name="edit_habit_name"></textarea>
+										</div>
+										<div class="form-group">
+											<label for="edit_date">Date</label>
+											<input type="date" class="form-control" name="edit_date"></input>
+										</div>
+										<div class="form-group">
+											<label for="edit_time">Time</label>
+											<input type="time" class="form-control" name="edit_time"></input>
+										</div>
+										<div class="form-group">
+											<label for="edit_points">Points</label>
+											<input type="edit_points" class="form-control" name="edit_points"></input>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<label for="edit_percentage">Percentage</label>
+											<input type="edit_percentage" class="form-control" name="edit_percentage"></input>
+										</div>
+									</div>
+								</div>
+								<button type="update" class="btn btn-default" name = "update_rem_button">Update</button>
+						</form>
+						<br />
+					</div>
 					<footer>@2021 - CPSC 362 - Group 2</footer>
 				</div>
 				<div class="col-sm-1">
