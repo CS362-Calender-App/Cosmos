@@ -22,7 +22,7 @@ table {
     width: 100%;
 }
 
-.scroll {
+.upcomingRemBox {
     height: 656px;
     overflow: auto;
 }
@@ -56,23 +56,4 @@ tbody tr:hover {
     color: white;
     text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
     font-weight: bold;
-}
-
-::-webkit-scrollbar {
-    width: 7px;
-}
-
-::-webkit-scrollbar-track {
-    background: white;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: grey;
-    border-radius: 10px;
-}
-
-
-::-webkit-scrollbar-thumb:hover {
-    background: dimgrey;
 }
