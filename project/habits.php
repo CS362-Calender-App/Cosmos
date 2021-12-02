@@ -13,7 +13,6 @@ if (isset($_POST['save_rem_button'])) {
 		$Time = $_POST['time'];
 		$Points = $_POST['points']; // Added
 		$Percentage = $_POST['percentage']; // Added
-		$Name = $_POST['name']; // Added
 
 	
 		if(!empty($habitDescription) && !empty($Date) && !empty($Time)) {
