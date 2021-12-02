@@ -269,8 +269,8 @@ $row[7] = Percentage
 									</div>
 									<div class="col-sm-4">
 										<div class="form-group">
-											<label for="edit_habit_name">Name</label>
-											<textarea rows = "1" type="edit_habit_name" class="form-control" name="edit_habit_name"></textarea>
+											<label for="edit_name">Name</label>
+											<textarea rows = "1" type="edit_name" class="form-control" name="edit_name"></textarea>
 										</div>
 										<div class="form-group">
 											<label for="edit_date">Date</label>
