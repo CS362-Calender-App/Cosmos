@@ -5,6 +5,7 @@ include("connection.php");
 include("session.php");
 
 $user_data = check_login($con);
+
 $ID = $_SESSION['ID'];
 if (isset($_POST['save_rem_button'])) {
 		$Name = $_POST['name']; // Added
@@ -75,7 +76,7 @@ if (isset($_POST['save_rem_button'])) {
 				mysqli_query($con, $editDescription);
 			}
 			if (!empty($Percentage_Rdit)) {
-				$editDescription = "UPDATE habits SET Percentage = '$Percentage_edit' WHERE ID = '$habitID'";
+				$editDescription = "UPDATE habits SET Percentage = '$Percentage_Edit' WHERE ID = '$habitID'";
 				mysqli_query($con, $editDescription);
 			}
 			
