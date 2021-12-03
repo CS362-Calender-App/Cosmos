@@ -6,6 +6,7 @@ CREATE TABLE users (
 	Name varchar(255) NOT NULL,
 	Password varchar(255) NOT NULL,
 	Email varchar(255),
+	Points int DEFAULT 0,
 	PRIMARY KEY (ID)
 );
 
