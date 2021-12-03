@@ -8,10 +8,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 	$Name = $_POST['username'];
 	$Email = $_POST['email'];
 	$Password = $_POST['password'];
+	$ID = $_SESSION['ID'];
 	
 	if(!empty($Name) && !empty($Password) && !empty($Email) && !is_numeric($Name)) {
 		$query = "INSERT INTO users (Name, Password, Email) VALUES ('$Name', '$Password', '$Email')";
+		$query2 = "INSERT INTO habits (ID, Points) VALUES(LAST_INSERT_ID(), '10')";
 		mysqli_query($con, $query);
+		mysqli_query($con, $query2);
 			
 		header("Location: login.php");
 		die;
