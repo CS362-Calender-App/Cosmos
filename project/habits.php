@@ -79,7 +79,7 @@ if (isset($_POST['save_rem_button'])) {
 				mysqli_query($con, $editDescription);
 			}
 			
-			header("Points: habits.php");
+			header("Location: habits.php");
 			die;
 		} 
 		else {
@@ -240,7 +240,7 @@ $row[7] = Percentage
 										<label for="percentage">Percentage</label>
 										<input type="percentage" class="form-control" name="percentage">
 									</div>
-									<button type="save" class="btn btn-default">Save</button>
+									<button type="save" class="btn btn-default" name = "save_rem_button">Save</button>
 								</form>
 					</div>
 				</div>
