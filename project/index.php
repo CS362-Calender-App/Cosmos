@@ -35,7 +35,7 @@ $rowCount = mysqli_num_rows($result2);
 $current  =0; 
 $total = $rowCount*100;
 
-$sql2 ="SELECT * FROM users ORDER BY points DESC";
+$sql2 ="SELECT * FROM users ORDER BY points DESC LIMIT 2 ";
 $result3 = mysqli_query($con, $sql2);
 $rowCount2 = mysqli_num_rows($result3);
  ?>
@@ -66,15 +66,16 @@ $rowCount2 = mysqli_num_rows($result3);
 				<div class="col-sm-6 user-display">
 					<br>
 					<h2>Hello, <?php echo $user_data['Name']; ?></h2>
+					<a type="button" class="btn btn-default" href="logout.php">Logout</a>
 				</div>
 			</div>
 			<div class="row main-wrapper">
 				<div class="col-sm-2 menu-display">
 					<div class="jumbotron box-transparent box-rounded notifier btn-group-vertical" style="padding: 0px; height: auto;">
 						<a class="btn btn-primary" href="index.php">Home</a>
-						<a class="btn btn-primary" href="">Reminder</a>
-						<a class="btn btn-primary" href="">Habits</a>
-						<a class="btn btn-primary" href="">Progress</a>
+						<a class="btn btn-primary" href="reminder.php">Reminder</a>
+						<a class="btn btn-primary" href="habits.php">Habits</a>
+						
 					</div>
 				</div>
 				<div class="col-sm-7 calendar1 top-padder">
@@ -142,7 +143,7 @@ $rowCount2 = mysqli_num_rows($result3);
 												$Description_= $row['Description'];
 												echo"
 													<div class= 'progress-bar' role = 'progressbar'
-												        aria-valuenow = '60' aria-valuemin = '0' aria-valuemax = '100' style = 'width:".$width."%; background-color: ".$arrayOfColors[$index]." !important;' ".$width."%> 
+												        aria-valuenow = '60' aria-valuemin = '0' aria-valuemax = '100' style = 'width:".$width."%; background-color: ".$arrayOfColors[$index]." !important;' ".$width."% title =".$Description_."> 
 												    </div>";
 												$index++;
 											}
@@ -151,9 +152,10 @@ $rowCount2 = mysqli_num_rows($result3);
 							</div>
 						</div>
 					</div>
-					<footer>@2021 - CPSC 362 - Group 2</footer>
+					
 				</div>
 				<div class="col-sm-3">
+					<footer>@2021 - CPSC 362 - Group 2</footer>
 				</div>
 			</div>
 		</div>
