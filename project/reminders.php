@@ -120,7 +120,7 @@
 					<div class="jumbotron box-transparent box-rounded notifier" style="padding: 0px;">
 						<div class="btn-group-vertical" style="width: 100%;">
 							<a class="btn btn-primary" href="index.php">Home</a>
-							<a class="btn btn-primary" href="reminders.php">Reminder</a>
+							<a class="btn btn-primary" href="reminders.php">Reminders</a>
 							<a class="btn btn-primary" href="habits.php">Habits</a>
 						</div>
 					</div>
