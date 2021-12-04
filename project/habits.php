@@ -53,8 +53,13 @@ if (isset($_POST['save_rem_button'])) {
 		$Time_Edit = $_POST['edit_time'];
 		$Points_Edit = $_POST['edit_points'];
 		$Percentage_Edit = $_POST['edit_percentage'];
+		$Delete_Edit = $_POST['edit_delete'];
 	
 		if(!empty($habitID)) {
+			if (!empty($Delete_Edit)) { // Added
+				$editDescription = "DELETE FROM habits WHERE ID = '$habitID'";
+				mysqli_query($con, $editDescription);
+			}
 			if (!empty($Name_Edit)) { // Added
 				$editDescription = "UPDATE habits SET Name = '$Name_Edit' WHERE ID = '$habitID'";
 				mysqli_query($con, $editDescription);
@@ -75,7 +80,7 @@ if (isset($_POST['save_rem_button'])) {
 				$editDescription = "UPDATE habits SET Points = '$Points_Edit' WHERE ID = '$habitID'";
 				mysqli_query($con, $editDescription);
 			}
-			if (!empty($Percentage_Rdit)) {
+			if (!empty($Percentage_Edit)) {
 				$editDescription = "UPDATE habits SET Percentage = '$Percentage_Edit' WHERE ID = '$habitID'";
 				mysqli_query($con, $editDescription);
 			}
@@ -196,7 +201,7 @@ $row[7] = Percentage
 								}
 								echo ' 
 								<div>
-									<div class="alert '.$alertbar.'"><b>'.$row['Name'].'</b></div>
+									<div class="alert '.$alertbar.'"><b>(ID: '.$row['ID'].') '.$row['Name'].'</b></b></div>
 									<div class="progress">
 										<div class="progress-bar '.$progressbar.' progress-bar-striped active" role="progressbar" aria-valuenow="70"  aria-valuemin="0" aria-valuemax="100" style="width:'.$row['Percentage'].'%">'.$row['Percentage'].'%</div>
 									</div>
@@ -283,6 +288,10 @@ $row[7] = Percentage
 							<div class="form-group">
 								<label for="edit_percentage">Percentage</label>
 								<input type="edit_percentage" class="form-control" name="edit_percentage"></input>
+							</div>
+							<div class="form-group">
+								<label for="edit_delete">Delete</label>
+								<input type="checkbox" class="form-control" name="edit_delete"></input>
 							</div>
 						</div>
 						<button type="update" class="btn btn-default" name = "update_rem_button">Update</button>
