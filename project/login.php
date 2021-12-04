@@ -61,9 +61,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 				<div class="col-sm-2 menu-display">
 					<div class="jumbotron box-transparent box-rounded notifier btn-group-vertical" style="padding: 0px; height: auto;">
 						<a class="btn btn-primary" href="index.php">Home</a>
-						<a class="btn btn-primary" href="">Reminder</a>
-						<a class="btn btn-primary" href="">Habits</a>
-						<a class="btn btn-primary" href="">Progress</a>
+						<a class="btn btn-primary" href="reminders.php">Reminders</a>
+						<a class="btn btn-primary" href="habits.php">Habits</a>
 					</div>
 				</div>
 				<div class="col-sm-2">
