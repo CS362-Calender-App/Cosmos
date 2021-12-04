@@ -25,7 +25,7 @@ footer {
  border-bottom: 1px dotted black;
 }
 
-/*.hovertext:before 
+.hovertext:before 
 {
   content: attr(data-hover);
   visibility: hidden;
@@ -41,7 +41,7 @@ footer {
   position: absolute;
   z-index: 1;
   left: 0;
-  top: 110%;*/
+  top: 110%;
 }
 
 .hovertext:hover:before {
