@@ -11,14 +11,14 @@ if (isset($_POST['save_rem_button'])) {
 		$Name = $_POST['name']; // Added
 		$habitDescription = $_POST['habit_description'];
 		$Date = $_POST['date'];
-		$Time = $_POST['time'];
+		// $Time = $_POST['time'];
 		$Points = $_POST['points']; // Added
-		$Percentage = $_POST['percentage']; // Added
+		// $Percentage = $_POST['percentage']; // Added
 
 	
-		if(!empty($habitDescription) && !empty($Date) && !empty($Time)) {
+		if(!empty($habitDescription) && !empty($Date)) {
 			$addhabit = "INSERT INTO habits (UserID, Name, Description, Date, Time, Points, Percentage) 
-							VALUES ('$ID', '$Name', '$habitDescription', '$Date', '$Time', '$Points', '$Percentage')";
+							VALUES ('$ID', '$Name', '$habitDescription', '$Date', 'NULL', '$Points', '0')";
 			mysqli_query($con, $addhabit);
 			
 			header("Location: habits.php");
@@ -228,31 +228,26 @@ $row[7] = Percentage
 										<input type="date" class="form-control" name="date">
 									</div>
 									<br />
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label for="time">Time</label>
 										<input type="time" class="form-control" name="time">
-									</div>
+									</div> -->
 									<br />
 									<div class="form-group">
 										<label for="points">Points</label>
 										<input type="points" class="form-control" name="points">
 									<br />
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label for="percentage">Percentage</label>
 										<input type="percentage" class="form-control" name="percentage">
-									</div>
+									</div> -->
 									<button type="save" class="btn btn-default" name = "save_rem_button">Save</button>
 								</form>
 					</div>
 				</div>
 		
 			</div>
-			<div class="row">
-				<div class="col-sm-12">
-				</div>
-				<div class="col-sm-2">
-				</div>
-				<div class="col-sm-10">
+			
 					<div class="jumbotron box-transparent box-rounded">
 						<h2>Edit a Habit</h2>
 						<br />
@@ -277,10 +272,10 @@ $row[7] = Percentage
 											<label for="edit_date">Date</label>
 											<input type="date" class="form-control" name="edit_date"></input>
 										</div>
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<label for="edit_time">Time</label>
 											<input type="time" class="form-control" name="edit_time"></input>
-										</div>
+										</div> -->
 										<div class="form-group">
 											<label for="edit_points">Points</label>
 											<input type="edit_points" class="form-control" name="edit_points"></input>
@@ -298,9 +293,6 @@ $row[7] = Percentage
 						<br />
 					</div>
 					<footer>@2021 - CPSC 362 - Group 2</footer>
-				</div>
-				<div class="col-sm-1">
-				</div>
 			</div>
 		</div>
 	</body>
