@@ -137,46 +137,45 @@ $row[7] = Percentage
 					<a type="button" class="btn btn-default" href="logout.php">Logout</a>
 				</div>
 			</div>
-			<div class="row main-wrapper">
+			<div class="row main-wrapper" style="height: 75vh;">
 				<div class="col-sm-2 menu-display">
 					<div class="jumbotron box-transparent box-rounded notifier btn-group-vertical" style="padding: 0px; height: auto;">
 						<a class="btn btn-primary" href="index.php">Home</a>
-						<a class="btn btn-primary" href="reminder.php">Reminders</a>
+						<a class="btn btn-primary" href="reminders.php">Reminders</a>
 						<a class="btn btn-primary" href="habits.php">Habits</a>
 						
 					</div>
 					<div>
-					<div class="box-rounded box-transparent box-rounded habit-heading">
-						<h2>Upcoming Habits</h2>
-					</div>
-					<div class="box-rounded jumbotron box-transparent box-rounded">
-					<?php 
-					if (mysqli_num_rows($upcoming) > 0) {
-						while ($row = mysqli_fetch_array($upcoming)) {
-							echo $row[2]." on ".$row[4];
+						<div class="box-rounded box-transparent box-rounded habit-heading">
+							<h2>Upcoming Habits</h2>
+						</div>
+						<div class="box-rounded jumbotron box-transparent box-rounded">
+						<?php 
+						if (mysqli_num_rows($upcoming) > 0) {
+							while ($row = mysqli_fetch_array($upcoming)) {
+								echo $row[2]." on ".$row[4];
+								echo "<br>";
+							}
+						} elseif (mysqli_num_rows($upcoming) == 0) {
+							echo "No Upcoming Habits to track";
+						}
+						
+						if (mysqli_num_rows($missed) > 0) {
+							echo "<br>";
+							echo "<br>";
+							echo "Past Habits:  ";
+							echo "<br>";
+							while ($row = mysqli_fetch_array($missed)) {
+								echo $row[2]." on ".$row[4];
+								echo "<br>";
+							}
+						} elseif (mysqli_num_rows($missed) == 0) {
+							echo "<br><br>No past habits to display";
 							echo "<br>";
 						}
-					} elseif (mysqli_num_rows($upcoming) == 0) {
-						echo "No Upcoming Habits to track";
-					}
-					
-					if (mysqli_num_rows($missed) > 0) {
-						echo "<br>";
-						echo "<br>";
-						echo "Past Habits:  ";
-						echo "<br>";
-						while ($row = mysqli_fetch_array($missed)) {
-							echo $row[2]." on ".$row[4];
-							echo "<br>";
-						}
-					} elseif (mysqli_num_rows($missed) == 0) {
-						echo "No past habits to display";
-						echo "<br>";
-					}
-					?>
+						?>
+						</div>
 					</div>
-					</div>
-
 				</div>
 				<div class="col-sm-7 top-padder">
 					<div class="box-rounded box-transparent box-rounded habit-heading">
@@ -236,63 +235,65 @@ $row[7] = Percentage
 									<div class="form-group">
 										<label for="points">Points</label>
 										<input type="points" class="form-control" name="points">
+									</div>
 									<br />
 									<!-- <div class="form-group">
 										<label for="percentage">Percentage</label>
 										<input type="percentage" class="form-control" name="percentage">
 									</div> -->
 									<button type="save" class="btn btn-default" name = "save_rem_button">Save</button>
-								</form>
+						</form>
 					</div>
 				</div>
-		
 			</div>
-			
-					<div class="jumbotron box-transparent box-rounded">
-						<h2>Edit a Habit</h2>
-						<br />
-						<form method = "POST">
-								<div class="row">
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label for="habit_id">Habit ID</label>
-											<input type="habit_id" class="form-control" name="habit_id"></input>
-										</div>
-										<div class="form-group">
-											<label for="edit_habit_description">Description</label>
-											<textarea rows = "5" type="edit_habit_description" class="form-control" name="edit_habit_description"></textarea>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label for="edit_name">Name</label>
-											<textarea rows = "1" type="edit_name" class="form-control" name="edit_name"></textarea>
-										</div>
-										<div class="form-group">
-											<label for="edit_date">Date</label>
-											<input type="date" class="form-control" name="edit_date"></input>
-										</div>
-										<!-- <div class="form-group">
-											<label for="edit_time">Time</label>
-											<input type="time" class="form-control" name="edit_time"></input>
-										</div> -->
-										<div class="form-group">
-											<label for="edit_points">Points</label>
-											<input type="edit_points" class="form-control" name="edit_points"></input>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label for="edit_percentage">Percentage</label>
-											<input type="edit_percentage" class="form-control" name="edit_percentage"></input>
-										</div>
-									</div>
-								</div>
-								<button type="update" class="btn btn-default" name = "update_rem_button">Update</button>
-						</form>
-						<br />
+			<div class="jumbotron box-transparent box-rounded">
+				<h2>Edit a Habit</h2>
+				<br />
+				<form method = "POST">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="habit_id">Habit ID</label>
+								<input type="habit_id" class="form-control" name="habit_id"></input>
+							</div>
+							<div class="form-group">
+								<label for="edit_habit_description">Description</label>
+								<textarea rows = "5" type="edit_habit_description" class="form-control" name="edit_habit_description"></textarea>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="edit_name">Name</label>
+								<textarea rows = "1" type="edit_name" class="form-control" name="edit_name"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="edit_date">Date</label>
+								<input type="date" class="form-control" name="edit_date"></input>
+							</div>
+							<!-- <div class="form-group">
+								<label for="edit_time">Time</label>
+								<input type="time" class="form-control" name="edit_time"></input>
+							</div> -->
+							<div class="form-group">
+								<label for="edit_points">Points</label>
+								<input type="edit_points" class="form-control" name="edit_points"></input>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="edit_percentage">Percentage</label>
+								<input type="edit_percentage" class="form-control" name="edit_percentage"></input>
+							</div>
+						</div>
+						<button type="update" class="btn btn-default" name = "update_rem_button">Update</button>
 					</div>
+				</form>
+				<br />
+			</div>
+			<div class="row">
+				<div class="col-sm-11">
 					<footer>@2021 - CPSC 362 - Group 2</footer>
+				</div>
 			</div>
 		</div>
 	</body>
