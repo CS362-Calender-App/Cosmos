@@ -89,8 +89,8 @@ $result = mysqli_query($con, $query);
 
 
 
-$missed = "SELECT * FROM habits WHERE Date < CURDATE()";	// Missed/Unlogged Habits
-$upcoming = "SELECT * FROM habits WHERE Date > CURDATE() ORDER BY Date";	// Upcoming Habits 
+$missed = "SELECT * FROM habits WHERE Date < CURDATE() AND USERID = ".$ID;	// Missed/Unlogged Habits
+$upcoming = "SELECT * FROM habits WHERE Date > CURDATE() AND USERID = ".$ID." ORDER BY Date";	// Upcoming Habits 
 $upcoming = mysqli_query($con, $upcoming);
 $missed = mysqli_query($con, $missed);
  ?>
@@ -193,7 +193,7 @@ $row[7] = Percentage
 								}
 								echo ' 
 								<div>
-									<div class="alert '.$alertbar.'"><b>(ID: '.$row['ID'].') '.$row['Name'].'</b><b style="text-align: right"> Points:</b></div>
+									<div class="alert '.$alertbar.'"><b>(ID: '.$row['ID'].')  '.$row['Name'].'</b><b> [Points:  '.$row['Points'].']</b></div>
 									<div class="progress">
 										<div class="progress-bar '.$progressbar.' progress-bar-striped active" role="progressbar" aria-valuenow="70"  aria-valuemin="0" aria-valuemax="100" style="width:'.$row['Percentage'].'%">'.$row['Percentage'].'%</div>
 									</div>
