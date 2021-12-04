@@ -20,11 +20,11 @@ $arrayOfColors[2] = "#00B1B0";
 $arrayOfColors[3] = "#FEC84D";
 $arrayOfColors[4] = "#E42256";
 $arrayOfColors[5] = "#01949A";
-$arrayOfColors[6] = "#01949A";
-$arrayOfColors[7] = "#01949A";
-$arrayOfColors[8] = "#01949A";
-$arrayOfColors[9] = "#01949A";
-$arrayOfColors[10] = "#01949A";
+$arrayOfColors[6] = "#D773A2";
+$arrayOfColors[7] = "#07BB9C";
+$arrayOfColors[8] = "#FFD743";
+$arrayOfColors[9] = "#A06AB4";
+$arrayOfColors[10] = "#A8E10C";
 $arrayOfColors[11] = "#01949A";
 $arrayOfColors[12] = "#01949A";
 
