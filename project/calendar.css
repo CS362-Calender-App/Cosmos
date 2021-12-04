@@ -77,7 +77,7 @@
 .days div {
     font-size: 3rem;
     margin: 0.3rem;
-    width: calc(115.6rem / 10);
+    width: calc(112rem / 10);
     height: 5rem;
     display: flex;
     justify-content: center;
