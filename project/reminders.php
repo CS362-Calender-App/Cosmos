@@ -122,7 +122,6 @@
 							<a class="btn btn-primary" href="index.php">Home</a>
 							<a class="btn btn-primary" href="reminders.php">Reminder</a>
 							<a class="btn btn-primary" href="habits.php">Habits</a>
-							<a class="btn btn-primary" href="">Progress</a>
 						</div>
 					</div>
 				</div>
