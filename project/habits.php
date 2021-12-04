@@ -72,14 +72,6 @@ if (isset($_POST['save_rem_button'])) {
 				$editDescription = "UPDATE habits SET Date = '$Date_Edit' WHERE ID = '$habitID'";
 				mysqli_query($con, $editDescription);
 			}
-			if (!empty($Time_Edit)) {
-				$editDescription = "UPDATE habits SET Time = '$Time_Edit' WHERE ID = '$habitID'";
-				mysqli_query($con, $editDescription);
-			}
-			if (!empty($Points_Edit)) {
-				$editDescription = "UPDATE habits SET Points = '$Points_Edit' WHERE ID = '$habitID'";
-				mysqli_query($con, $editDescription);
-			}
 			if (!empty($Percentage_Edit)) {
 				$editDescription = "UPDATE habits SET Percentage = '$Percentage_Edit' WHERE ID = '$habitID'";
 				mysqli_query($con, $editDescription);
@@ -201,7 +193,7 @@ $row[7] = Percentage
 								}
 								echo ' 
 								<div>
-									<div class="alert '.$alertbar.'"><b>(ID: '.$row['ID'].') '.$row['Name'].'</b></b></div>
+									<div class="alert '.$alertbar.'"><b>(ID: '.$row['ID'].') '.$row['Name'].'</b><b style="text-align: right"> Points:</b></div>
 									<div class="progress">
 										<div class="progress-bar '.$progressbar.' progress-bar-striped active" role="progressbar" aria-valuenow="70"  aria-valuemin="0" aria-valuemax="100" style="width:'.$row['Percentage'].'%">'.$row['Percentage'].'%</div>
 									</div>
@@ -280,21 +272,23 @@ $row[7] = Percentage
 								<input type="time" class="form-control" name="edit_time"></input>
 							</div> -->
 							<div class="form-group">
-								<label for="edit_points">Points</label>
-								<input type="edit_points" class="form-control" name="edit_points"></input>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
 								<label for="edit_percentage">Percentage</label>
 								<input type="edit_percentage" class="form-control" name="edit_percentage"></input>
 							</div>
+							<!-- <div class="form-group">
+								<label for="edit_points">Points</label>
+								<input type="edit_points" class="form-control" name="edit_points"></input>
+							</div> -->
+						</div>
+						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="edit_delete">Delete</label>
 								<input type="checkbox" class="form-control" name="edit_delete"></input>
 							</div>
+							<br>
+							<br>
+							<button type="update" class="btn btn-default" name = "update_rem_button">Update</button>
 						</div>
-						<button type="update" class="btn btn-default" name = "update_rem_button">Update</button>
 					</div>
 				</form>
 				<br />
