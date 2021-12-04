@@ -73,7 +73,7 @@ $rowCount2 = mysqli_num_rows($result3);
 				<div class="col-sm-2 menu-display">
 					<div class="jumbotron box-transparent box-rounded notifier btn-group-vertical" style="padding: 0px; height: auto;">
 						<a class="btn btn-primary" href="index.php">Home</a>
-						<a class="btn btn-primary" href="reminders.php">Reminders</a>
+						<a class="btn btn-primary" href="reminder.php">Reminders</a>
 						<a class="btn btn-primary" href="habits.php">Habits</a>
 						
 					</div>
