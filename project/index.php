@@ -40,7 +40,7 @@ $result3 = mysqli_query($con, $sql2);
 $rowCount2 = mysqli_num_rows($result3);
 
 
- $sql3 ="SELECT * FROM reminders WHERE UserID = '$ID'";
+$sql3 ="SELECT * FROM reminders WHERE UserID = '$ID'";
 $result4 = mysqli_query($con, $sql3);
 $rowCount3 = mysqli_num_rows($result4);
  ?>
@@ -78,7 +78,7 @@ $rowCount3 = mysqli_num_rows($result4);
 				<div class="col-sm-2 menu-display">
 					<div class="jumbotron box-transparent box-rounded notifier btn-group-vertical" style="padding: 0px; height: auto;">
 						<a class="btn btn-primary" href="index.php">Home</a>
-						<a class="btn btn-primary" href="reminder.php">Reminders</a>
+						<a class="btn btn-primary" href="reminders.php">Reminders</a>
 						<a class="btn btn-primary" href="habits.php">Habits</a>
 						
 					</div>
@@ -133,7 +133,7 @@ $rowCount3 = mysqli_num_rows($result4);
 							<?php  
 								if($rowCount3 >0)
 									{
-										echo" You have $rowCount upcoming tasks. ";
+										echo" You have $rowCount3 upcoming tasks. ";
 									}
 							?>
 					</div>
