@@ -110,7 +110,7 @@ $rowCount2 = mysqli_num_rows($result3);
 										while($row = mysqli_fetch_assoc($result2))
 											{
 												$width = ($row['Percentage']/ $total)*100;
-												$Description_= $row['Description'];
+												$Description_= $row['Name'];
 												echo "
 													<div class= 'progress-bar' role = 'progressbar'
 													aria-valuenow = '60' aria-valuemin = '0' aria-valuemax = '100' style = 'width:".$width."%; background-color: ".$arrayOfColors[$index]." !important;' ".$width."% title =".$Description_."> 
