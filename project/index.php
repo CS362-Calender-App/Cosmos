@@ -35,14 +35,19 @@ $rowCount = mysqli_num_rows($result2);
 $current  =0; 
 $total = $rowCount*100;
 
-$sql2 ="SELECT * FROM users ORDER BY points DESC LIMIT 3";
-$result3 = mysqli_query($con, $sql2);
-$rowCount2 = mysqli_num_rows($result3);
+
 
 
 $sql3 ="SELECT * FROM reminders WHERE UserID = '$ID'";
 $result4 = mysqli_query($con, $sql3);
 $rowCount3 = mysqli_num_rows($result4);
+
+
+
+$sql4 ="SELECT * FROM habits WHERE UserID = '$ID' && Percentage = 100";
+$result5 = mysqli_query($con, $sql4);
+$rowCount4 = mysqli_num_rows($result5);
+				
  ?>
 
 
@@ -138,16 +143,16 @@ $rowCount3 = mysqli_num_rows($result4);
 							?>
 					</div>
 					<div class="jumbotron box-transparent box-rounded notifier">
-						<h3>Leaderboard</h3>
+						<h3>Your points</h3>
 							<?php 
-								if($rowCount2 >0)
-									{
-										$index=0;
-										while($row2 = mysqli_fetch_assoc($result3))
-											{
-											$index++;
-											echo "<h3> $index. ".$row2['Name']." &nbsp &nbsp &nbsp &nbsp &nbsp  ".$row2['points']."</h3>";
+								if($rowCount4 >0)
+									{			
+										$TotalPoints = 0;							
+										while($row2 = mysqli_fetch_assoc($result5))
+											{		
+												$TotalPoints += $row2['Points'];
 											}
+											echo "<h3> $TotalPoints </h3>";
 									}
 							?>
 					</div>
@@ -163,7 +168,7 @@ $rowCount3 = mysqli_num_rows($result4);
 				</div>	
 			</div>
 			<div class="row">
-				<footer>@2021 - CPSC 362 - Group 2</footer>
+				
 			</div>
 		</div>
 		<script src="script.js"></script>
