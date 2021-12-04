@@ -35,7 +35,7 @@ $rowCount = mysqli_num_rows($result2);
 $current  =0; 
 $total = $rowCount*100;
 
-$sql2 ="SELECT * FROM users ORDER BY points DESC LIMIT 2 ";
+$sql2 ="SELECT * FROM users ORDER BY points DESC LIMIT 3";
 $result3 = mysqli_query($con, $sql2);
 $rowCount2 = mysqli_num_rows($result3);
  ?>
@@ -73,15 +73,13 @@ $rowCount2 = mysqli_num_rows($result3);
 				<div class="col-sm-2 menu-display">
 					<div class="jumbotron box-transparent box-rounded notifier btn-group-vertical" style="padding: 0px; height: auto;">
 						<a class="btn btn-primary" href="index.php">Home</a>
-						<a class="btn btn-primary" href="reminder.php">Reminder</a>
+						<a class="btn btn-primary" href="reminders.php">Reminders</a>
 						<a class="btn btn-primary" href="habits.php">Habits</a>
 						
 					</div>
 				</div>
 				<div class="col-sm-7 calendar1 top-padder">
-					<div class=" calendar box-rounded">
-						<h2>Calendar</h2>
-						
+					<div class="calendar box-rounded">
 				            <div class="month">
 				                <h3><i class="fas fa-angle-left prev"></i> </h3>
 				                <div class="date">
@@ -100,7 +98,28 @@ $rowCount2 = mysqli_num_rows($result3);
 				                <div>Sat</div>
 				            </div>
 				            <div class="days"></div>
-				       
+					</div>
+					<br>
+					<div class="jumbotron box-transparent box-rounded">
+						<h3> Your Progression </h3>
+						<div class="progress">
+							<?php  
+								if($rowCount >0)
+									{
+										$index=0;
+										while($row = mysqli_fetch_assoc($result2))
+											{
+												$width = ($row['Percentage']/ $total)*100;
+												$Description_= $row['Description'];
+												echo "
+													<div class= 'progress-bar' role = 'progressbar'
+													aria-valuenow = '60' aria-valuemin = '0' aria-valuemax = '100' style = 'width:".$width."%; background-color: ".$arrayOfColors[$index]." !important;' ".$width."% title =".$Description_."> 
+													</div>";
+													$index++;
+											}
+									}
+							?>										
+						</div>
 					</div>
 				</div>
 				<div class="col-sm-3 top-padder">
@@ -124,39 +143,16 @@ $rowCount2 = mysqli_num_rows($result3);
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-12">
-				</div>
-
 				<div class="col-sm-2">
 				</div>
 				<div class="col-sm-7">
-					<div class="jumbotron box-transparent box-rounded">
-						<h3> Your Progression </h3>
-						<div class="progress">
-							<?php  
-								if($rowCount >0)
-									{
-										$index=0;
-										while($row = mysqli_fetch_assoc($result2))
-											{
-												$width = ($row['Percentage']/ $total)*100;
-												$Description_= $row['Name'];
-												echo"
-													<div class= 'progress-bar' role = 'progressbar'
-												        aria-valuenow = '60' aria-valuemin = '0' aria-valuemax = '100' style = 'width:".$width."%; background-color: ".$arrayOfColors[$index]." !important;' ".$width."% title =".$Description_."> 
-												    </div>";
-												$index++;
-											}
-									}
-							?>										
-							</div>
-						</div>
 					</div>
-					
 				</div>
 				<div class="col-sm-3">
-					<footer>@2021 - CPSC 362 - Group 2</footer>
-				</div>
+				</div>	
+			</div>
+			<div class="row">
+				<footer>@2021 - CPSC 362 - Group 2</footer>
 			</div>
 		</div>
 		<script src="script.js"></script>
