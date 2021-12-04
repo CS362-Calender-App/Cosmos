@@ -38,6 +38,11 @@ $total = $rowCount*100;
 $sql2 ="SELECT * FROM users ORDER BY points DESC LIMIT 3";
 $result3 = mysqli_query($con, $sql2);
 $rowCount2 = mysqli_num_rows($result3);
+
+
+ $sql3 ="SELECT * FROM reminders WHERE UserID = '$ID'";
+$result4 = mysqli_query($con, $sql3);
+$rowCount3 = mysqli_num_rows($result4);
  ?>
 
 
@@ -124,7 +129,13 @@ $rowCount2 = mysqli_num_rows($result3);
 				</div>
 				<div class="col-sm-3 top-padder">
 					<div class="jumbotron box-transparent box-rounded notifier">
-						<h3>Quick Reminder</h3>
+						<h3>Upcoming Reminder</h3>
+							<?php  
+								if($rowCount3 >0)
+									{
+										echo" You have $rowCount upcoming tasks. ";
+									}
+							?>
 					</div>
 					<div class="jumbotron box-transparent box-rounded notifier">
 						<h3>Leaderboard</h3>
@@ -135,7 +146,7 @@ $rowCount2 = mysqli_num_rows($result3);
 										while($row2 = mysqli_fetch_assoc($result3))
 											{
 											$index++;
-											echo "<h3> $index. ".$row2['Name']." </h3>";
+											echo "<h3> $index. ".$row2['Name']." &nbsp &nbsp &nbsp &nbsp &nbsp  ".$row2['points']."</h3>";
 											}
 									}
 							?>
